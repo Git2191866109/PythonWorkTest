@@ -1,5 +1,3 @@
-[hadoop @ ip - 172 - 31 - 20 - 164 feed]$ cat
-feed_read_avg.py
 # !/usr/bin/python
 # -*- coding:utf-8 -*-
 from operator import add

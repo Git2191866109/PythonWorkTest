@@ -11,3 +11,15 @@ killomiters = 1.609 * miles
 print '%f miles is the same as %f km' % (miles, killomiters)
 
 
+# 给一些变量赋值
+go_surf,get_a_tan_while,boat_size,toll_money = (1,'windsurfing',30.2,-2.00)
+print go_surf
+print get_a_tan_while
+
+# 将两个对象交换
+x,y = 1,3
+print x
+print y
+x,y = y,x #交换
+print x
+print y

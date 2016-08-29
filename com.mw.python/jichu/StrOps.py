@@ -1,7 +1,9 @@
 # encoding:utf-8
 pyStr = 'python'
+pyStr_shuang = "python"
 iscool = 'is cool!'
 print pyStr[0]
+print pyStr_shuang
 print pyStr[2:5]
 print iscool[:2]
 print iscool[3:]
@@ -14,3 +16,13 @@ print '-' * 20
 ps3yinhao = '''python ...
 is cool'''
 print ps3yinhao
+
+strs =str([0, 3, 5, 6])
+print strs
+print `strs`
+print repr(strs)
+# 反转字符串
+s = 'abcdefg'
+print s[::-1]
+# 每隔一个取字符
+print s[::2]
