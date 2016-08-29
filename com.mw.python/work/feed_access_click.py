@@ -24,7 +24,7 @@ def getfixedTimeStamp(fixhours, fixdays=0):
 
 # 主要功能是统计Android用户的右上角的新闻入口点击量
 if __name__ == "__main__":
-    j = -3;
+    j = -6;
     if len(sys.argv) == 2:
         j = -1 * int(sys.argv[1])
 
@@ -48,9 +48,14 @@ try:
     conn = MySQLdb.connect(host='ec2-54-223-197-216.cn-north-1.compute.amazonaws.com.cn', user='moji',
                            passwd='BigDataMoji', db='tblu', port=3306, charset="utf8")
     cursor = conn.cursor()
-    content = [(1, click_num, date0)]
-    sql = """insert into feed_access_click(click_num,date) values(%s,%s)"""  ##""" """
-    cursor.executemany(sql, content)
+
+    # print "click_num...%s" %(click_num)
+    # print "date..."+ date0
+    # content = [(1, click_num, date0)]
+    # print content
+    sql = "insert into `feed_access_click` (`feed_access_click`,`date`) values(%s,'%s')" % (click_num, date0)
+    cursor.execute(sql)
+    # cursor.executemany(sql, content)
     conn.commit()
 except:
     traceback.print_exc()
