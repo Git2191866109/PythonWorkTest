@@ -9,10 +9,9 @@ aList[1] = 5
 print aList
 
 # 元祖, 不能更改
-aTuple = ('root',77,93,'try')
+aTuple = ('root', 77, 93, 'try')
 print aTuple
 print aTuple[:3]
 
-aTuple[1]=5
+aTuple[1] = 5
 print aTuple
-
