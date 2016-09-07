@@ -15,9 +15,10 @@ def excel_table_byindex(file='raw-model-v5.xlsx', colnameindex=0, by_index=0):
     data = open_excel(file)
     table = data.sheets()[by_index]
     nrows = table.nrows  # 行数
-    print '行数...%s' % nrows
-    ncols = table.ncols  # 列数
-    print '列数...%s' % ncols
+    # print '行数...%s' % nrows
+    # ncols = table.ncols  # 列数
+    # print '列数...%s' % ncols
+    print table.col_values(0)
     colnames = table.row_values(colnameindex)  # 某一行数据
     list = []
     for rownum in range(1, nrows):

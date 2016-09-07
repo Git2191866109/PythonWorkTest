@@ -18,7 +18,7 @@ for i in range(0, 3):
 for i in xrange(0, 3):
     print i
 # 这两个输出的结果都是一样的，实际上有很多不同，range会直接生成一个list对象：
-a = range(0, 100)
+a = range(0, 162)
 print type(a)
 print a
 print a[0], a[1]
@@ -27,3 +27,4 @@ a = xrange(0, 100)
 print type(a)
 print a
 print a[0], a[1]
+

@@ -23,3 +23,8 @@ print y
 x,y = y,x #交换
 print x
 print y
+
+
+bianma = [u'7', u'11', u'3']
+for i in bianma:
+    print i.encode()
