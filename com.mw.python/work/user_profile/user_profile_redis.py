@@ -45,7 +45,7 @@ def format_tag(taglist):
     tags = np.load(tag_path)
     fond_tags = tagprocess(tags,taglist)
     return fond_tags
-
+# 生成格式化数据（原始数据）
 def parse(line):
     try:
         result = ''

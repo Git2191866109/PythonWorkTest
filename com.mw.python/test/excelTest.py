@@ -5,7 +5,7 @@ import xlrd
 
 # model save
 # 打开Excel文件读取数据
-data = xlrd.open_workbook('raw-model-v5.xlsx')
+data = xlrd.open_workbook('raw-model-v6.xlsx')
 table = data.sheets()[0]
 model = []
 #  获取行数和列数
@@ -25,7 +25,7 @@ print model
 print model.shape
 
 # save the model
-np.save('model_v5.npy', model)
+# np.save('model_v5.npy', model)
 
 # tags save
 tag_list = []
@@ -34,4 +34,4 @@ for i in xrange(1, table.nrows):
 print tag_list
 # tag_list = np.array(tag_list)
 print tag_list[84]
-np.save('tag_list_v5.npy', tag_list)
+# np.save('tag_list_v5.npy', tag_list)
