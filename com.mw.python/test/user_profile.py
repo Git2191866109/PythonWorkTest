@@ -17,16 +17,17 @@ def readfile(contentdir):
             line_list.append(line)
 
     # 输出1000个用户的值
-    for i in xrange(0, 1000):
+    # for i in xrange(0, 1000):
+    for i in xrange(0, len(line_list)):
         uid, fondTags, result_local = process_result_tag(line_list[i])
         result_user_temp[uid] = fondTags
         result_user_local.append(result_local)
     # print result_user_temp
     # print result_user_local
-    local_path = "user_profile.txt"
-    with open(local_path, "a") as f:
-        # 方法一：
-        f.write("\n".join(result_user_local))
+    # local_path = "user_profile.txt"
+    # with open(local_path, "a") as f:
+    #     # 方法一：
+    #     f.write("\n".join(result_user_local))
         # 方法二：
         # for i in result_user_local:
         #     f.write(i + '\n')
@@ -75,14 +76,14 @@ def process_result_tag(line):
     fond_tags = tagprocess(tags, utag)
     # model * fond_tags
     result_model = user_model_computation(fond_tags, model)
-    # print "uid:%s:fondTags:%s" % (uid, result_model)
 
     # 拼接结果
-    key = "uid:%s:fondTags" % uid
+    key = "uid:%s:fc" % uid
     value = result_model
 
-    # 保存本地的
-    result_local = "uid:%s:fondTags:%s" % (uid, result_model)
+    # 保存到本地
+    # result_local = "uid:%s:fc:%s" % (uid, fond_tags)
+    result_local = "uid:%s" % (uid)
     # print result_local
     # print type(result_local)
     # 建立临时文件
@@ -93,8 +94,9 @@ def process_result_tag(line):
 def sava2Redis(redclient, result_user_profile, delaytime=60 * 60 * 24 * 30):
     # 遍历结果map，插入数据
     for key in result_user_profile:
+        # redclient.delete(key)
         # print key + ":%s" % result_user_profile[key]
-        redclient.setex(key, result_user_profile[key], delaytime)
+        redclient.set(key, result_user_profile[key])
         # redclient.setex(hkeystr + ":%s:%s" % (uid, snsid), json.dumps(datas), delaytime)  # datas外部参数，传入该函数保存到redis
 
 
@@ -103,12 +105,15 @@ if __name__ == '__main__':
     model_path = "model_v6.npy"
     model = np.load(model_path)
     # 读取文件
-    contentdir = 'E:\\MojieWork\\data'
+    contentdir = 'E:\\MojieWork\\user_profile_data\\data_0821_0827'
     result_user_profile = readfile(contentdir)
     # print result_user_profile
     # 存入redis中
-    redclient = redis.Redis(host='192.168.1.11', port=6381, db=3, password='mojichina')  # local test redis
-    # sava2Redis(redclient, result_user_profile)
+    # redclient = redis.Redis(host='192.168.1.11', port=6381, db=4, password='mojichina')  # local test redis
+    redclient = redis.Redis(host='54.222.234.243', port=6379, db=1, password='mojichina')  # cluser test redis
+    sava2Redis(redclient, result_user_profile)
+
+
     # 查看数据
-    # for key in result_user_profile:
-    #     print redclient.get(key)
+    for key in result_user_profile:
+        print redclient.get(key)

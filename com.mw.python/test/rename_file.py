@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*
 import os
-path = 'E:\\MojieWork\\data'
+path = 'E:\MojieWork\user_profile_data\data_0821_0827'
 for file in os.listdir(path):
     if os.path.isfile(os.path.join(path,file))==True:
         if file.find('.')<0:

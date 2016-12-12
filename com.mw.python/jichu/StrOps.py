@@ -26,3 +26,8 @@ s = 'abcdefg'
 print s[::-1]
 # 每隔一个取字符
 print s[::2]
+
+# 字符串比较
+sStr1 = 'strchr'
+sStr2 = 'strchr'
+print cmp(sStr1, sStr2)
